@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>مطعم أبو حمزة - مكة المكرمة</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts (Cairo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        hamza: {
+                            red: '#D91E36',     
+                            dark: '#1A1A1A',    
+                            bg: '#F8FAFC',      
+                            white: '#FFFFFF'
+                        }
+                    },
+                    fontFamily: { sans: ['Cairo', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        body { 
+            background-color: #F8FAFC; 
+            font-family: 'Cairo', sans-serif;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+        }
+
+        .screen { display: none; }
+        .screen.active { display: block; animation: slideUp 0.4s ease-out; }
+
+        .btn-red {
+            background: #D91E36;
+            color: white;
+            width: 100%;
+            padding: 1.1rem;
+            border-radius: 1.25rem;
+            font-weight: 800;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 10px 15px -3px rgba(217, 30, 54, 0.3);
+            transition: all 0.2s;
+        }
+        .btn-red:active { transform: scale(0.97); opacity: 0.9; }
+
+        .info-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.25rem;
+            position: relative;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f1f5f9;
+        }
+
+        .floating-icon {
+            position: absolute;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 38px;
+            height: 38px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            color: #D91E36;
+            z-index: 10;
+            border: 2px solid #fff;
+        }
+
+        #hours-list {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+        #hours-list.show {
+            max-height: 300px;
+            margin-top: 1rem;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 1rem;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .nav-btn.active { color: #D91E36; }
+        .nav-btn.active i { transform: scale(1.2); }
+
+        .item-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            border: 1px solid #f1f5f9;
+            transition: all 0.2s;
+        }
+        .item-card:active { transform: scale(0.98); background: #fdfdfd; }
+
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+        }
+
+        .cart-overlay {
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body class="flex justify-center min-h-screen">
+
+    <div class="w-full max-w-md bg-hamza-bg relative flex flex-col shadow-2xl overflow-hidden min-h-screen">
+        
+        <main class="flex-1 overflow-y-auto hide-scrollbar pb-32">
+            
+            <!-- صفحة الهبوط -->
+            <div id="home-screen" class="screen active">
+                <div class="bg-white px-8 pt-8 pb-12 rounded-b-[3.5rem] shadow-sm flex flex-col items-center text-center">
+                    <div class="mb-4">
+    <img src="https://res.cloudinary.com/do0u3he16/image/upload/v1777562824/Picsart_26-04-30_18-25-32-930_dgofst.png" 
+         alt="لوجو مطعم أبو حمزة" 
+         class="w-32 h-32 object-contain drop-shadow-xl mx-auto">
+</div>
+                    <h1 class="text-4xl font-black text-hamza-dark mb-1">مطعم أبو حمزة</h1>
+                    <p class="text-[10px] text-gray-400 font-bold tracking-[0.2em] uppercase">المشويات والأكل المصري الأصيل</p>
+                </div>
+
+                <div class="px-6 -mt-8">
+                    <button onclick="navigate('menu')" class="btn-red mb-8">
+                        تصفح المنيو الآن
+                        <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                    </button>
+
+                    <div class="info-card">
+    <div class="floating-icon"><i data-lucide="share-2" class="w-4 h-4"></i></div>
+    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3 block text-center">اطلب أو تابعنا الآن</span>
+    <div class="grid grid-cols-2 gap-3">
+        <a href="tel:0564755206" class="bg-green-600 text-white py-3.5 rounded-xl flex items-center justify-center gap-2 text-sm font-bold shadow-sm active:scale-95 transition-transform border border-green-700">
+            <i data-lucide="phone-call" class="w-4 h-4 text-white"></i> اتصل بنا
+        </a>
+        <a href="https://www.tiktok.com/@user24738138851511?_r=1&_t=ZS-95xAQefjBcC" target="_blank" class="bg-black text-white py-3.5 rounded-xl flex items-center justify-center gap-2 text-sm font-bold shadow-sm active:scale-95 transition-transform border border-gray-800">
+            <i data-lucide="video" class="w-4 h-4 text-hamza-red"></i> تيك توك
+        </a>
+    </div>
+</div>
+
+
+                    <div class="info-card cursor-pointer" onclick="toggleHours()">
+    <div class="floating-icon"><i data-lucide="clock" class="w-4 h-4"></i></div>
+    <div class="flex justify-between items-center">
+        <div>
+            <h3 class="font-black text-hamza-dark">ساعات العمل</h3>
+            <p class="text-[10px] text-green-500 font-bold">مفتوح الآن</p>
+        </div>
+        <i data-lucide="chevron-down" id="hours-chevron" class="w-5 h-5 text-gray-300 transition-transform"></i>
+    </div>
+    <div id="hours-list">
+        <div class="space-y-3">
+            <div class="flex justify-between items-center">
+                <span class="text-sm font-bold text-gray-600">جميع أيام الأسبوع</span>
+                <span class="text-xs font-black text-hamza-red" dir="ltr">1:00 PM - 4:00 AM</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                    <a href="https://goo.gl/maps/G3uqHyPJN947bqXA7" target="_blank" class="info-card block cursor-pointer active:scale-[0.98] transition-transform">
+    <div class="floating-icon"><i data-lucide="map-pin" class="w-4 h-4"></i></div>
+    <h3 class="font-black text-hamza-dark mb-1">شوف موقعنا على الخريطة</h3>
+    <p class="text-[11px] text-gray-400 leading-relaxed font-semibold">جدة - حي الحرازات - شارع الحرازات العام</p>
+</a>
+
+                    
+                    <div class="mt-4 text-center">
+                        <p class="text-[9px] text-gray-300 font-bold uppercase tracking-widest">جميع الحقوق محفوظة © لمطعم أبو حمزة 2024</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- صفحة المنيو -->
+            <div id="menu-screen" class="screen">
+                <div class="sticky-header border-b px-6 py-5 flex justify-between items-center">
+                    <h2 class="text-xl font-black text-hamza-red underline decoration-4 underline-offset-8">منيو أبو حمزة</h2>
+                    <button onclick="navigate('home')" class="bg-gray-50 p-2 rounded-full text-gray-400 active:scale-90 transition-transform">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+                
+                <div class="sticky top-[73px] z-40 bg-white/95 backdrop-blur-md flex gap-2 overflow-x-auto hide-scrollbar px-6 py-4 border-b" id="cat-tabs">
+                </div>
+
+                <div class="p-6 space-y-3" id="items-list">
+                </div>
+            </div>
+
+            <!-- صفحة السلة -->
+            <div id="cart-screen" class="screen p-6">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-black underline decoration-hamza-red decoration-4 underline-offset-10">سلة طلباتك</h2>
+        <button onclick="clearCart()" id="clear-btn" class="hidden text-hamza-red text-xs font-black flex items-center gap-1.5 bg-red-50 px-3 py-2.5 rounded-xl">
+            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i> مسح السلة
+        </button>
+    </div>
+    
+    <div id="cart-items-container" class="space-y-4 mb-8"></div>
+    
+    <div id="customer-info" class="hidden space-y-4 mb-8">
+        <div class="bg-white p-5 rounded-[1.8rem] shadow-sm border border-gray-50">
+            <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3 block text-center">بيانات الاستلام</span>
+            
+            <div class="flex gap-2 mb-4">
+                <button onclick="setOrderType('pickup')" id="btn-pickup" class="flex-1 py-3 rounded-xl text-xs font-black border-2 transition-all border-hamza-red bg-hamza-red text-white">استلام 🥡</button>
+                <button onclick="setOrderType('delivery')" id="btn-delivery" class="flex-1 py-3 rounded-xl text-xs font-black border-2 transition-all border-gray-100 text-gray-400">توصيل 🚗</button>
+            </div>
+
+            <input type="text" id="cust-name" placeholder="اسم العميل" class="w-full bg-gray-50 border-none rounded-xl p-4 text-sm font-bold mb-3 focus:ring-2 focus:ring-hamza-red/20 outline-none">
+            <textarea id="order-notes" placeholder="أي ملاحظات إضافية؟ (بدون بصل، زيادة شطة...)" class="w-full bg-gray-50 border-none rounded-xl p-4 text-sm font-bold h-24 resize-none focus:ring-2 focus:ring-hamza-red/20 outline-none"></textarea>
+        </div>
+    </div>
+
+    <div id="cart-empty" class="text-center py-24 flex flex-col items-center gap-5">
+        <div class="bg-white p-8 rounded-full text-gray-100 shadow-sm border border-gray-50">
+            <i data-lucide="shopping-basket" class="w-16 h-16"></i>
+        </div>
+        <p class="text-gray-400 font-black text-lg">السلة لسه فاضية!</p>
+        <button onclick="navigate('menu')" class="bg-hamza-red/10 text-hamza-red font-black text-sm px-6 py-3 rounded-xl">تصفح المنيو</button>
+    </div>
+    
+    <div id="cart-summary" class="hidden mt-6 bg-white p-7 rounded-[2.5rem] shadow-2xl border border-white">
+        <div id="delivery-fee-row" class="hidden flex justify-between items-center text-sm font-bold text-gray-400 mb-4 px-2">
+            <span>رسوم التوصيل:</span>
+            <span>10 ريال</span>
+        </div>
+
+        <div class="flex justify-between items-center text-xl font-black mb-7 px-2">
+            <span class="text-gray-700">إجمالي الحساب:</span>
+            <div class="text-left">
+                <span id="total-price" class="text-hamza-red text-3xl">0</span>
+                <span class="text-xs text-gray-400 mr-1 font-bold">ريال</span>
+            </div>
+        </div>
+        <button onclick="sendWhatsapp()" class="w-full bg-green-500 text-white py-5 rounded-2xl font-black flex items-center justify-center gap-3 shadow-lg active:scale-95 transition-all mb-4">
+            تأكيد وإرسال الطلب
+            <i data-lucide="send" class="w-6 h-6"></i>
+        </button>
+    </div>
+</div>
+
+
+        </main>
+
+        <!-- الملاحة السفلى -->
+        <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-[380px] bg-white/90 backdrop-blur-xl h-20 rounded-[2.5rem] shadow-[0_20px_60px_rgba(0,0,0,0.12)] flex justify-around items-center px-4 z-[100] border border-white/60">
+            <button onclick="navigate('home')" class="nav-btn active flex flex-col items-center gap-1 transition-all flex-1" data-id="home">
+                <i data-lucide="home" class="w-6 h-6 transition-transform"></i>
+                <span class="text-[9px] font-black uppercase tracking-wider">الرئيسية</span>
+            </button>
+            <button onclick="navigate('menu')" class="nav-btn flex flex-col items-center gap-1 text-gray-300 transition-all flex-1" data-id="menu">
+                <i data-lucide="layout-grid" class="w-6 h-6 transition-transform"></i>
+                <span class="text-[9px] font-black uppercase tracking-wider">المنيو</span>
+            </button>
+            <button onclick="navigate('cart')" class="nav-btn flex flex-col items-center gap-1 text-gray-300 relative transition-all flex-1" data-id="cart">
+                <i data-lucide="shopping-basket" class="w-6 h-6 transition-transform"></i>
+                <span id="cart-badge" class="hidden absolute -top-1.5 -right-0 w-5 h-5 bg-hamza-red text-white text-[10px] rounded-full flex items-center justify-center border-2 border-white font-black shadow-sm">0</span>
+                <span class="text-[9px] font-black uppercase tracking-wider">السلة</span>
+            </button>
+        </nav>
+
+    </div>
+
+    <script>
+                // داتا المنيو المحدثة بالترتيب الجديد
+        // 1. بيانات المنيو
+const menuData = [
+    { id: 1, cat: "🍢 قسم المشويات", items: [
+        { n: "نفر كباب مشكل", p: 25 }, { n: "نفر كباب دجاج", p: 25 }, { n: "نفر شيش طاووق", p: 25 },
+        { n: "نفر أوصال لحم", p: 30 }, { n: "نفر ريش", p: 35 }, { n: "نفر طرب", p: 25 },
+        { n: "رغيف حواوشي", p: 10 }, { n: "حبة دجاج شواية مع رز بخاري", p: 40 },
+        { n: "حبة دجاج تكة", p: 50 }, { n: "حبة دجاج شيش", p: 50 },
+        { n: "مشاوي مشكل كيلو", p: 120 }, { n: "مشاوي لحم صافي كيلو", p: 150 }
+    ]},
+    { id: 2, cat: "🍲 قسم المطبخ", items: [
+        { n: "طلب فراخ محمر فخذ مع رز الفخار", p: 15 }, { n: "طلب فراخ فرن", p: 15 },
+        { n: "طلب موزة ضاني بالفتة", p: 35 }, { n: "حبة حمام محشي بخلطة الأرز", p: 35 },
+        { n: "طلب مشكل محاشي", p: 15 }, { n: "طاجن مكرونة بالبشاميل", p: 15 },
+        { n: "طاجن كوارع بالبصل", p: 35 }, { n: "طاجن لحم بالخضار", p: 30 },
+        { n: "طلب ممبار", p: 25 }, { n: "شوربة لسان عصفور", p: 5 },
+        { n: "مكرونة بالصلصة", p: 8 }, { n: "مكرونة بشاميل", p: 10 },
+        { n: "مكرونة اسباجتي", p: 8 }, { n: "رز بخاري", p: 6 },
+        { n: "رز شعيرية", p: 5 }, { n: "رز أبيض", p: 5 },
+        { n: "ملوخية", p: 7 }, { n: "خضار بسلة", p: 7 },
+        { n: "خضار بامية", p: 7 }, { n: "خضار فاصوليا", p: 7 }, { n: "خضار لوبية", p: 7 }
+    ]},
+    { id: 3, cat: "🍛 قسم الكشري والإضافات", items: [
+        { n: "كشري الشبح سادة", p: 8 }, { n: "كشري أبو حمزة بالكبدة وسط", p: 12 },
+        { n: "كشري بالكبدة جامبو", p: 16 }, { n: "عيش توست (إضافة)", p: 2 },
+        { n: "علبة صلصة (إضافة)", p: 3 }, { n: "علبة تقلية (إضافة)", p: 3 },
+        { n: "علبة عدس (إضافة)", p: 3 }, { n: "كبدة سادة (إضافة)", p: 8 }
+    ]},
+    { id: 4, cat: "🥘 الأطباق المحلية", items: [
+    { 
+        n: "طبق مشكل", 
+        p: 10, 
+        d: "بطاطس، طعمية، باذنجان، فول، 8 خبز شامي بالسمسم وحبة البركة، مخلل" 
+    },
+    { 
+        n: "طبق طعمية سوبر مكس حمزواي", 
+        p: 16, 
+        d: "متبل، حمص، 6 طعمية، بطاطس، 3 بيض، سلطة، مخلل، 8 خبز شامي بالسمسم" 
+    },
+    { 
+        n: "صحن فول مصلح حمزواي", 
+        p: 7, 
+        d: "طعمية، باذنجان، فول بالصلصة، 2 بيض، 6 خبز شامي" 
+    },
+    { 
+        n: "طبق لمة الأحباب", 
+        p: 20, 
+        d: "طعمية، بيض، باذنجان، بطاطس، فول (صلصة وعادي)، شكشوكة، زهرة، خبز ومخلل" 
+    }
+]},
+    { id: 5, cat: "🍲 الأطباق الخارجية", items: [
+        { n: "طعمية 4 حبات", p: 1 }, { n: "بطاطس صوابع", p: 2 },
+        { n: "بطاطس شيبسي", p: 2 }, { n: "بطاطس جمبري", p: 2 },
+        { n: "بطاطس بانية", p: 2 }, { n: "باذنجان مقلي", p: 2 },
+        { n: "باذنجان مخلل", p: 2 }, { n: "فول عادي - صغير", p: 2 },
+        { n: "فول عادي - كبير", p: 4 }, { n: "فول بالصلصة - صغير", p: 2 },
+        { n: "فول بالصلصة - كبير", p: 4 }, { n: "فول مصلح حمزواي - صغير", p: 5 },
+        { n: "فول مصلح حمزواي - كبير", p: 10 }, { n: "شكشوكة - صغير", p: 2 },
+        { n: "شكشوكة - كبير", p: 4 }, { n: "زهرة - صغير", p: 2 },
+        { n: "زهرة - كبير", p: 4 }, { n: "جبنة - صغير", p: 2 },
+        { n: "جبنة - كبير", p: 4 }, { n: "مسقعة - صغير", p: 2 },
+        { n: "مسقعة - كبير", p: 4 }, { n: "متبل لبناني - صغير", p: 2 },
+        { n: "متبل لبناني - كبير", p: 4 }, { n: "حمص سوري - صغير", p: 2 },
+        { n: "حمص سوري - كبير", p: 4 }, { n: "بطاطس مهروسة - صغير", p: 2 },
+        { n: "بطاطس مهروسة - كبير", p: 4 }
+    ]},
+    { id: 6, cat: "🥪 ركن السندوتشات", items: [
+    { n: "ساندوتش فول", p: 2 }, 
+    { n: "ساندوتش طعمية", p: 2 },
+    { n: "ساندوتش مسقعة", p: 2 }, 
+    { n: "ساندوتش بابا غنوج", p: 2 },
+    { n: "ساندوتش جبنة بالطماطم", p: 2 }, 
+    { n: "ساندوتش شيبسي", p: 2 },
+    { n: "ساندوتش صوابع", p: 2 }, 
+    { n: "ساندوتش بيض مسلوق", p: 3 },
+    { n: "ساندوتش فول بالبيض", p: 3 }, 
+    { n: "ساندوتش بطاطس بانيه", p: 2 },
+    { n: "ساندوتش بطاطس مهروسة", p: 2 }, 
+    { n: "ساندوتش فول على طعمية", p: 3 },
+    { n: "ساندوتش حمزة ماكس", p: 4 }, 
+    { n: "طعمية بالبيض", p: 3 },        // الصنف الجديد 1
+    { n: "حمص سوري", p: 2 },          // الصنف الجديد 2
+    { n: "عجة فرنساوي", p: 2 },        // الصنف الجديد 3
+    { n: "أي ساندوتش بإضافة بيض", p: 3 }
+]},
+    { id: 7, cat: "🥗 السلطات", items: [
+        { n: "حمص", p: 5 }, { n: "طحينة", p: 5 }, { n: "سلطة خضرة", p: 5 }
+    ]},
+    { id: 8, cat: "🥤 المشروبات", items: [
+        { n: "بيبسي", p: 3 }, { n: "ماء", p: 1 }, { n: "كوكاكولا", p: 2 },
+        { n: "كوكاكولا برتقال", p: 2 }, { n: "كوكاكولا ليمون", p: 2 }
+    ]},
+    { id: 9, cat: "🍰 الحلويات", items: [
+        { n: "بلح الشام", p: 5 }, { n: "زلابية", p: 5 }, { n: "صوابع زينب", p: 5 },
+        { n: "رز باللبن", p: 5 }, { n: "مهلبية", p: 5 }
+    ]}
+];
+
+// 2. حالة التطبيق
+let state = {
+    activeTab: 'home',
+    activeCat: menuData[0].cat,
+    cart: JSON.parse(localStorage.getItem('hamza_cart')) || [],
+    orderType: 'pickup' 
+};
+
+// 3. وظائف التشغيل
+function init() {
+    renderTabs();
+    renderItems();
+    updateBadge();
+    lucide.createIcons();
+}
+
+function renderTabs() {
+    const bar = document.getElementById('cat-tabs');
+    bar.innerHTML = menuData.map(c => `
+        <button onclick="changeCat('${c.cat}')" class="flex-none px-6 py-2.5 rounded-2xl text-xs font-black transition-all ${state.activeCat === c.cat ? 'bg-hamza-red text-white shadow-lg scale-105' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}">
+            ${c.cat}
+        </button>
+    `).join('');
+}
+
+function renderItems() {
+    const list = document.getElementById('items-list');
+    const category = menuData.find(c => c.cat === state.activeCat);
+    list.innerHTML = category.items.map((i, idx) => `
+        <div class="item-card" style="animation: slideUp 0.3s ease-out ${idx * 0.05}s both">
+            <div class="flex-1 ml-4">
+                <h4 class="font-black text-sm text-hamza-dark">${i.n}</h4>
+                ${i.d ? `<p class="text-[10px] text-gray-400 font-bold mt-1 leading-relaxed">${i.d}</p>` : ''}
+                <div class="flex items-center gap-1 mt-1.5">
+                    <span class="text-hamza-red font-black text-base">${i.p}</span>
+                    <span class="text-[10px] text-gray-400 font-bold">ريال</span>
+                </div>
+            </div>
+            <button onclick="addToCart('${i.n}', ${i.p}, event)" class="w-11 h-11 bg-hamza-dark text-white rounded-2xl flex items-center justify-center active:scale-90 transition-all hover:bg-black shadow-md border border-gray-100 flex-shrink-0">
+                <i data-lucide="plus" class="w-5 h-5"></i>
+            </button>
+        </div>
+    `).join('');
+    lucide.createIcons();
+}
+
+function addToCart(n, p, e) {
+    const exists = state.cart.find(x => x.n === n);
+    if(exists) exists.q++; else state.cart.push({n, p, q: 1});
+    saveCart();
+    
+    const btn = e.currentTarget;
+    const originalIcon = btn.innerHTML;
+    btn.innerHTML = '<i data-lucide="check" class="w-5 h-5"></i>';
+    btn.classList.replace('bg-hamza-dark', 'bg-green-500');
+    lucide.createIcons();
+    
+    setTimeout(() => {
+        btn.innerHTML = originalIcon;
+        btn.classList.replace('bg-green-500', 'bg-hamza-dark');
+        lucide.createIcons();
+    }, 800);
+}
+
+function saveCart() {
+    localStorage.setItem('hamza_cart', JSON.stringify(state.cart));
+    updateBadge();
+}
+
+function updateBadge() {
+    const count = state.cart.reduce((s, i) => s + i.q, 0);
+    const badge = document.getElementById('cart-badge');
+    badge.textContent = count;
+    badge.classList.toggle('hidden', count === 0);
+}
+
+function renderCart() {
+    const container = document.getElementById('cart-items-container');
+    const empty = document.getElementById('cart-empty');
+    const summary = document.getElementById('cart-summary');
+    const clearBtn = document.getElementById('clear-btn');
+    const info = document.getElementById('customer-info');
+    const deliveryRow = document.getElementById('delivery-fee-row');
+    
+    if(state.cart.length === 0) {
+        container.innerHTML = ''; 
+        empty.classList.remove('hidden'); 
+        summary.classList.add('hidden'); 
+        clearBtn.classList.add('hidden');
+        info.classList.add('hidden');
+        return;
+    }
+    
+    empty.classList.add('hidden'); 
+    summary.classList.remove('hidden');
+    clearBtn.classList.remove('hidden');
+    info.classList.remove('hidden');
+    
+    container.innerHTML = state.cart.map(i => `
+        <div class="bg-white p-5 rounded-[1.8rem] flex justify-between items-center shadow-sm border border-gray-50">
+            <div class="flex-1 ml-4">
+                <h4 class="font-black text-sm text-hamza-dark mb-1">${i.n}</h4>
+                <div class="flex items-center gap-1">
+                    <span class="text-hamza-red font-black text-base">${i.p * i.q}</span>
+                    <span class="text-[10px] text-gray-400 font-bold">ريال</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 bg-gray-50/80 p-2 rounded-[1.2rem] border border-gray-100/50">
+                <button onclick="changeQty('${i.n}', -1)" class="w-9 h-9 flex items-center justify-center text-gray-400 active:scale-90 transition-colors">
+                    <i data-lucide="minus" class="w-4 h-4"></i>
+                </button>
+                <span class="font-black text-base w-4 text-center text-hamza-dark">${i.q}</span>
+                <button onclick="changeQty('${i.n}', 1)" class="w-9 h-9 flex items-center justify-center text-gray-400 active:scale-90 transition-colors">
+                    <i data-lucide="plus" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    `).join('');
+
+    let itemsTotal = state.cart.reduce((s, i) => s + (i.p * i.q), 0);
+    let deliveryFee = state.orderType === 'delivery' ? 10 : 0;
+    
+    if(deliveryFee > 0) deliveryRow.classList.remove('hidden');
+    else deliveryRow.classList.add('hidden');
+
+    document.getElementById('total-price').textContent = itemsTotal + deliveryFee;
+    lucide.createIcons();
+}
+
+function changeQty(n, d) {
+    const item = state.cart.find(x => x.n === n);
+    if(item) { 
+        item.q += d; 
+        if(item.q <= 0) state.cart = state.cart.filter(x => x.n !== n);
+    }
+    saveCart();
+    renderCart();
+}
+
+function clearCart() {
+    if(confirm('هل تريد مسح جميع الأصناف من السلة؟')) {
+        state.cart = [];
+        saveCart();
+        renderCart();
+    }
+}
+
+function navigate(tab) {
+    state.activeTab = tab;
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    const targetScreen = document.getElementById(`${tab}-screen`);
+    if (targetScreen) targetScreen.classList.add('active');
+    
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        const isActive = btn.dataset.id === tab;
+        btn.classList.toggle('active', isActive);
+        const icon = btn.querySelector('i, svg');
+        if (icon) {
+            icon.classList.toggle('text-hamza-red', isActive);
+            icon.classList.toggle('text-gray-300', !isActive);
+        }
+    });
+    
+    if(tab === 'cart') renderCart();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function changeCat(cat) { 
+    state.activeCat = cat; 
+    renderTabs();
+    renderItems();
+}
+
+function toggleHours() {
+    const list = document.getElementById('hours-list');
+    const chevron = document.getElementById('hours-chevron');
+    list.classList.toggle('show');
+    chevron.style.transform = list.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0deg)';
+}
+
+function setOrderType(type) {
+    state.orderType = type;
+    const isDelivery = type === 'delivery';
+    
+    document.getElementById('btn-delivery').className = isDelivery ? 
+        "flex-1 py-3 rounded-xl text-xs font-black border-2 border-hamza-red bg-hamza-red text-white" : 
+        "flex-1 py-3 rounded-xl text-xs font-black border-2 border-gray-100 text-gray-400";
+        
+    document.getElementById('btn-pickup').className = !isDelivery ? 
+        "flex-1 py-3 rounded-xl text-xs font-black border-2 border-hamza-red bg-hamza-red text-white" : 
+        "flex-1 py-3 rounded-xl text-xs font-black border-2 border-gray-100 text-gray-400";
+    
+    renderCart();
+}
+
+function sendWhatsapp() {
+    const phone = "966564755206";
+    const name = document.getElementById('cust-name').value || 'غير محدد';
+    const notes = document.getElementById('order-notes').value || 'لا توجد ملاحظات';
+    const typeLabel = state.orderType === 'delivery' ? '🚗 توصيل للمنزل' : '🥡 استلام من الفرع';
+    const deliveryFee = state.orderType === 'delivery' ? 10 : 0;
+    const itemsTotal = state.cart.reduce((s, i) => s + (i.p * i.q), 0);
+    
+    let msg = "🏮 *طلب جديد من مطعم أبو حمزة*%0A";
+    msg += "━━━━━━━━━━━━━━━━━━%0A";
+    msg += `👤 *العميل:* ${name}%0A`;
+    msg += `📍 *نوع الطلب:* ${typeLabel}%0A`;
+    msg += "━━━━━━━━━━━━━━━━━━%0A%0A";
+    
+    state.cart.forEach(i => {
+        msg += `• *${i.n}* (عدد ${i.q}) = ${i.p * i.q} ريال%0A`;
+    });
+    
+    if(deliveryFee > 0) {
+        msg += `%0A🚚 *رسوم التوصيل:* 10 ريال`;
+    }
+    
+    msg += "%0A━━━━━━━━━━━━━━━━━━%0A";
+    msg += `📝 *ملاحظات:* ${notes}%0A`;
+    msg += `💰 *الإجمالي النهائي: ${itemsTotal + deliveryFee} ريال*`;
+    
+    window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
+}
+
+window.onload = init;
+    </script>
+</body>
+</html>

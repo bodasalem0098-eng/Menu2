@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+  <meta name="google-site-verification" content="wL0e0sTjXxYcRzLKuMJezBS9wq9u25GCDl8N91eJJy4" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>مطعم أبو حمزة - مكة المكرمة</title>
+    <title>مطعم أبو حمزة - للمشويات</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -33,6 +34,44 @@
     </script>
 
     <style>
+    /* تنسيق الحاوية الرئيسية في أسفل الصفحة */
+./* التنسيق الجديد: بسيط وصغير جداً */
+.footer-container {
+    text-align: center;
+    padding: 5px 0; /* تقليل المساحة جداً */
+    background: transparent; /* إزالة الصندوق الداكن */
+}
+
+
+.prefix-text {
+    color: #888; /* لون رمادي هادئ */
+    font-size: 10px; /* حجم خط صغير جداً */
+}
+
+.full-name {
+    color: #00ff88; 
+    font-weight: bold;
+    font-size: 11px; /* اسمك أكبر قليلاً من الجملة */
+}
+
+.whatsapp-btn:hover {
+    opacity: 1; /* يوضح اللون فقط عند اللمس */
+}
+.designer-tag {
+    text-decoration: none;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center; /* لضمان التوسط */
+    
+    /* --- العب في القيم دي عشان تحركها --- */
+    margin-top: 10px;      /* لزيادة المسافة بينها وبين جملة الحقوق (تحريك لأسفل) */
+    margin-bottom: 20px;   /* لزيادة المسافة بينها وبين شريط التنقل السفلي (تحريك لأعلى) */
+    transform: translateX(5- px); /* لو عايز تحركها يمين أو شمال (مثلاً 5px أو -5px) */
+    /* ------------------------------------ */
+}
+
+
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -168,15 +207,24 @@
                     <div class="info-card">
     <div class="floating-icon"><i data-lucide="share-2" class="w-4 h-4"></i></div>
     <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3 block text-center">اطلب أو تابعنا الآن</span>
-    <div class="grid grid-cols-2 gap-3">
-        <a href="tel:0564755206" class="bg-green-600 text-white py-3.5 rounded-xl flex items-center justify-center gap-2 text-sm font-bold shadow-sm active:scale-95 transition-transform border border-green-700">
-            <i data-lucide="phone-call" class="w-4 h-4 text-white"></i> اتصل بنا
+    
+    <div class="flex flex-col gap-3">
+        <a href="tel:0564755206" class="bg-green-600 text-white py-3.5 rounded-xl flex items-center justify-center gap-2 text-sm font-bold shadow-sm active:scale-95 transition-transform border border-green-700 w-full">
+            <i data-lucide="phone-call" class="w-4 h-4 text-white"></i> اتصل بنا للطلب
         </a>
-        <a href="https://www.tiktok.com/@user24738138851511?_r=1&_t=ZS-95xAQefjBcC" target="_blank" class="bg-black text-white py-3.5 rounded-xl flex items-center justify-center gap-2 text-sm font-bold shadow-sm active:scale-95 transition-transform border border-gray-800">
-            <i data-lucide="video" class="w-4 h-4 text-hamza-red"></i> تيك توك
-        </a>
+
+        <div class="grid grid-cols-2 gap-3">
+            <a href="https://www.tiktok.com/@user24738138851511?_r=1&_t=ZS-95xAQefjBcC" target="_blank" class="bg-black text-white py-3.5 rounded-xl flex items-center justify-center gap-2 text-sm font-bold shadow-sm active:scale-95 transition-transform border border-gray-800">
+                <i data-lucide="video" class="w-4 h-4 text-hamza-red"></i> تيك توك
+            </a>
+
+            <a href="https://www.facebook.com/share/14ZhrFPiKK1/" target="_blank" class="bg-[#1877F2] text-white py-3.5 rounded-xl flex items-center justify-center gap-2 text-sm font-bold shadow-sm active:scale-95 transition-transform border border-blue-700">
+                <i data-lucide="facebook" class="w-4 h-4"></i> فيسبوك
+            </a>
+        </div>
     </div>
 </div>
+
 
 
                     <div class="info-card cursor-pointer" onclick="toggleHours()">
@@ -199,16 +247,28 @@
 </div>
 
 
-                    <a href="https://goo.gl/maps/G3uqHyPJN947bqXA7" target="_blank" class="info-card block cursor-pointer active:scale-[0.98] transition-transform">
-    <div class="floating-icon"><i data-lucide="map-pin" class="w-4 h-4"></i></div>
+                    <a href="https://maps.app.goo.gl/jMZYxXFjFkWK9iga7" 
+   target="_blank" 
+   class="info-card block cursor-pointer active:scale-[0.98] transition-transform bg-white relative p-5 rounded-[1.5rem] shadow-sm border border-gray-50 mb-4 no-underline">
+    
+    <div class="floating-icon" style="position: absolute; right: -10px; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); color: #D91E36; border: 2px solid #fff;">
+        <i data-lucide="map-pin" class="w-4 h-4"></i>
+    </div>
+    
     <h3 class="font-black text-hamza-dark mb-1">شوف موقعنا على الخريطة</h3>
     <p class="text-[11px] text-gray-400 leading-relaxed font-semibold">جدة - حي الحرازات - شارع الحرازات العام</p>
 </a>
 
+
                     
-                    <div class="mt-4 text-center">
-                        <p class="text-[9px] text-gray-300 font-bold uppercase tracking-widest">جميع الحقوق محفوظة © لمطعم أبو حمزة 2024</p>
-                    </div>
+                    <p style="text-align:center; font-size:12px; color:#666;">جميع الحقوق محفوظة © لمطعم أبو حمزة 2024</p>
+
+<div class="footer-container">
+    <a href="https://wa.me/966550340929" target="_blank" class="whatsapp-btn">
+        <span class="prefix-text">تصميم المنيو:</span>
+        <span class="full-name">Abdulrahman Shaban</span>
+    </a>
+</div>
                 </div>
             </div>
 
@@ -307,99 +367,168 @@
                 // داتا المنيو المحدثة بالترتيب الجديد
         // 1. بيانات المنيو
 const menuData = [
-    { id: 1, cat: "🍢 قسم المشويات", items: [
-        { n: "نفر كباب مشكل", p: 25 }, { n: "نفر كباب دجاج", p: 25 }, { n: "نفر شيش طاووق", p: 25 },
-        { n: "نفر أوصال لحم", p: 30 }, { n: "نفر ريش", p: 35 }, { n: "نفر طرب", p: 25 },
-        { n: "رغيف حواوشي", p: 10 }, { n: "حبة دجاج شواية مع رز بخاري", p: 40 },
-        { n: "حبة دجاج تكة", p: 50 }, { n: "حبة دجاج شيش", p: 50 },
-        { n: "مشاوي مشكل كيلو", p: 120 }, { n: "مشاوي لحم صافي كيلو", p: 150 }
-    ]},
-    { id: 2, cat: "🍲 قسم المطبخ", items: [
-        { n: "طلب فراخ محمر فخذ مع رز الفخار", p: 15 }, { n: "طلب فراخ فرن", p: 15 },
-        { n: "طلب موزة ضاني بالفتة", p: 35 }, { n: "حبة حمام محشي بخلطة الأرز", p: 35 },
-        { n: "طلب مشكل محاشي", p: 15 }, { n: "طاجن مكرونة بالبشاميل", p: 15 },
-        { n: "طاجن كوارع بالبصل", p: 35 }, { n: "طاجن لحم بالخضار", p: 30 },
-        { n: "طلب ممبار", p: 25 }, { n: "شوربة لسان عصفور", p: 5 },
-        { n: "مكرونة بالصلصة", p: 8 }, { n: "مكرونة بشاميل", p: 10 },
-        { n: "مكرونة اسباجتي", p: 8 }, { n: "رز بخاري", p: 6 },
-        { n: "رز شعيرية", p: 5 }, { n: "رز أبيض", p: 5 },
-        { n: "ملوخية", p: 7 }, { n: "خضار بسلة", p: 7 },
-        { n: "خضار بامية", p: 7 }, { n: "خضار فاصوليا", p: 7 }, { n: "خضار لوبية", p: 7 }
-    ]},
-    { id: 3, cat: "🍛 قسم الكشري والإضافات", items: [
-        { n: "كشري الشبح سادة", p: 8 }, { n: "كشري أبو حمزة بالكبدة وسط", p: 12 },
-        { n: "كشري بالكبدة جامبو", p: 16 }, { n: "عيش توست (إضافة)", p: 2 },
-        { n: "علبة صلصة (إضافة)", p: 3 }, { n: "علبة تقلية (إضافة)", p: 3 },
-        { n: "علبة عدس (إضافة)", p: 3 }, { n: "كبدة سادة (إضافة)", p: 8 }
-    ]},
-    { id: 4, cat: "🥘 الأطباق المحلية", items: [
     { 
-        n: "طبق مشكل", 
-        p: 10, 
-        d: "بطاطس، طعمية، باذنجان، فول، 8 خبز شامي بالسمسم وحبة البركة، مخلل" 
+        id: 1, 
+        cat: "🍢 قسم المشويات", 
+        items: [
+            { n: "نفر كباب لحم <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: خبز + طحينة + سلطة + شوربة)</span>", p: 25 },
+            { n: "نفر كباب دجاج <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: خبز + طحينة + سلطة + شوربة)</span>", p: 25 },
+            { n: "نفر ريش <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: خبز + طحينة + سلطة + شوربة)</span>", p: 35 },
+            { n: "نفر كباب مشكل <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: خبز + طحينة + سلطة + شوربة)</span>", p: 25 },
+            { n: "نفر أوصال لحم <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: خبز + طحينة + سلطة + شوربة)</span>", p: 30 },
+            { n: "نفر شيش طاووق <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: خبز + طحينة + سلطة + شوربة)</span>", p: 25 },
+            { n: "نفر طرب <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: خبز + طحينة + سلطة + شوربة)</span>", p: 25 },
+            { n: "كيلو مشاوي مشكل", p: 100 },
+            { n: "نصف كيلو مشاوي مشكل", p: 50 },
+            { n: "رغيف حواوشي", p: 10 },
+            { n: "حبة دجاج على الفحم", p: 30 },
+            { n: "نصف حبة دجاج على الفحم", p: 15 },
+            { n: "ساندوتش كباب لحم (مشوي)", p: 10 },
+            { n: "ساندوتش كباب دجاج (مشوي)", p: 10 },
+            { n: "علبة سلطة خضراء (إضافية)", p: 2 },
+            { n: "علبة طحينة (إضافية)", p: 2 },
+            { n: "علبة حمص (إضافية)", p: 2 },
+            { n: "خبز بالسمسم (4 حبات)", p: 1 }
+        ]
     },
     { 
-        n: "طبق طعمية سوبر مكس حمزواي", 
-        p: 16, 
-        d: "متبل، حمص، 6 طعمية، بطاطس، 3 بيض، سلطة، مخلل، 8 خبز شامي بالسمسم" 
+        id: 2, 
+        cat: "🐓 قسم الدجاج", 
+        items: [
+            { n: "ربع حبة دجاج محمر <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 15 },
+            { n: "ربع حبة دجاج فرن <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 15 },
+            { n: "ربع حبة دجاج شوربة <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 15 }
+        ]
     },
     { 
-        n: "صحن فول مصلح حمزواي", 
-        p: 7, 
-        d: "طعمية، باذنجان، فول بالصلصة، 2 بيض، 6 خبز شامي" 
+        id: 3, 
+        cat: "🍖 قسم اللحوم", 
+        items: [
+            { n: "طلب لحمة محمر <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 20 },
+            { n: "طلب لحمة شوربة <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 20 },
+            { n: "طلب لحمة بالخضار <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 20 }
+        ]
     },
     { 
-        n: "طبق لمة الأحباب", 
-        p: 20, 
-        d: "طعمية، بيض، باذنجان، بطاطس، فول (صلصة وعادي)، شكشوكة، زهرة، خبز ومخلل" 
+        id: 4, 
+        cat: "🍲 قسم الطواجن", 
+        items: [
+            { n: "طاجن لحمة بالبصل <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 25 },
+            { n: "طاجن عكاوي بالبصل <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 25 },
+            { n: "طاجن كوارع بالبصل <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 25 }
+        ]
+    },
+    { 
+        id: 5, 
+        cat: "🔥 قسم الروقان", 
+        items: [
+            { n: "طلب موزة ضاني بالفتة <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 35 },
+            { n: "حبة حمام محشي <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 35 },
+            { n: "ربع حبة بطة محمر <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 25 },
+            { n: "ربع حبة بطة شوربة <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 25 }
+        ]
+    },
+    { 
+        id: 6, 
+        cat: "🥘 قسم المطبخ", 
+        items: [
+            { n: "طلب فراخ محمر فخذ مع رز الفخار", p: 15 },
+            { n: "طلب فراخ فرن", p: 15 },
+            { n: "طلب مشكل محاشي", p: 15 },
+            { n: "طاجن مكرونة بالبشاميل", p: 15 },
+            { n: "طاجن لحم بالخضار", p: 30 },
+            { n: "طلب ممبار (وجبة كاملة)", p: 25 },
+            { n: "شوربة لسان عصفور", p: 5 },
+            { n: "مكرونة بالصلصة", p: 8 },
+            { n: "مكرونة بشاميل", p: 10 },
+            { n: "مكرونة اسباجتي", p: 8 },
+            { n: "رز بخاري / شعيرية / أبيض", p: 5 },
+            { n: "ملوخية", p: 7 },
+            { n: "خضار (بسلة/بامية/فاصوليا/لوبية)", p: 7 }
+        ]
+    },
+    { 
+        id: 7, 
+        cat: "🍳 إضافات المطبخ", 
+        items: [
+            { n: "طلب ممبار <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + طحينة + خبز + شوربة)</span>", p: 10 },
+            { n: "طلب كبدة إسكندراني <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + طحينة + خبز + شوربة)</span>", p: 10 }
+        ]
+    },
+    { 
+        id: 8, 
+        cat: "🍛 قسم الكشري", 
+        items: [
+            { n: "كشري الشبح سادة", p: 8 },
+            { n: "كشري أبو حمزة بالكبدة وسط", p: 12 },
+            { n: "كشري بالكبدة جامبو", p: 16 },
+            { n: "عيش توست (إضافة)", p: 2 },
+            { n: "علبة صلصة (إضافة)", p: 3 },
+            { n: "علبة تقلية (إضافة)", p: 3 },
+            { n: "علبة عدس (إضافة)", p: 3 },
+            { n: "كبدة سادة (إضافة)", p: 8 }
+        ]
+    },
+    { 
+        id: 9, 
+        cat: "🍽️ الأطباق المحلية", 
+        items: [
+            { n: "طبق مشكل <span class='block text-[10px] text-gray-400 font-normal mt-1'>(بطاطس + طعمية + باذنجان + فول + 8 خبز بالسمسم + مخلل)</span>", p: 10 },
+            { n: "طعمية سوبر مكس حمزواي <span class='block text-[10px] text-gray-400 font-normal mt-1'>(متبل + حمص + 6 طعمية + بطاطس + 3 بيض + سلطة + مخلل + 8 خبز)</span>", p: 16 },
+            { n: "صحن فول مصلح حمزواي <span class='block text-[10px] text-gray-400 font-normal mt-1'>(طعمية + باذنجان + فول بالصلصة + 2 بيض + 6 خبز شامي)</span>", p: 7 },
+            { n: "طبق لمة الأحباب <span class='block text-[10px] text-gray-400 font-normal mt-1'>(طعمية + بيض + باذنجان + بطاطس + فول بالصلصة + فول عادي + شكشوكة + زهرة)</span>", p: 20 },
+            { n: "أي إضافة (إضافية للطبق)", p: 1 }
+        ]
+    },
+    { 
+        id: 10, 
+        cat: "🍲 الأطباق الخارجية", 
+        items: [
+            { n: "طعمية (4 حبات)", p: 1 },
+            { n: "بطاطس (صوابع / شيبسي / جمبري / بانية)", p: 2 },
+            { n: "باذنجان (مقلي / مخلل)", p: 2 },
+            { n: "فول عادي <span class='block text-[10px] text-gray-400 font-normal mt-1'>(صغير: 2 ريال / كبير: 4 ريال)</span>", p: 2 },
+            { n: "فول بالصلصة <span class='block text-[10px] text-gray-400 font-normal mt-1'>(صغير: 2 ريال / كبير: 4 ريال)</span>", p: 2 },
+            { n: "فول مصلح حمزواي <span class='block text-[10px] text-gray-400 font-normal mt-1'>(صغير: 5 ريال / كبير: 10 ريال)</span>", p: 5 },
+            { n: "شكشوكة / زهرة / جبنة", p: 2 },
+            { n: "مسقعة / متبل / حمص", p: 2 },
+            { n: "بطاطس مهروسة", p: 2 }
+        ]
+    },
+    { 
+        id: 11, 
+        cat: "🥪 ركن السندوتشات", 
+        items: [
+            { n: "ساندوتش فول / طعمية", p: 2 },
+            { n: "ساندوتش مسقعة / بابا غنوج", p: 2 },
+            { n: "ساندوتش جبنة بالطماطم", p: 2 },
+            { n: "ساندوتش شيبسي / صوابع", p: 2 },
+            { n: "ساندوتش بيض مسلوق", p: 3 },
+            { n: "ساندوتش فول بالبيض", p: 3 },
+            { n: "ساندوتش بطاطس بانيه", p: 2 },
+            { n: "ساندوتش بطاطس مهروسة", p: 2 },
+            { n: "ساندوتش فول على طعمية", p: 3 },
+            { n: "ساندوتش حمزة ماكس", p: 4 },
+            { n: "إضافة بيض لأي ساندوتش", p: 3 }
+        ]
+    },
+    { 
+        id: 12, 
+        cat: "🥗 السلطات", 
+        items: [
+            { n: "حمص", p: 5 },
+            { n: "طحينة", p: 5 },
+            { n: "سلطة خضرة", p: 5 }
+        ]
+    },
+    { 
+        id: 13, 
+        cat: "🥤 المشروبات", 
+        items: [
+            { n: "كنزا", p: 3 },
+            { n: "ماء", p: 1 },
+        ]
     }
-]},
-    { id: 5, cat: "🍲 الأطباق الخارجية", items: [
-        { n: "طعمية 4 حبات", p: 1 }, { n: "بطاطس صوابع", p: 2 },
-        { n: "بطاطس شيبسي", p: 2 }, { n: "بطاطس جمبري", p: 2 },
-        { n: "بطاطس بانية", p: 2 }, { n: "باذنجان مقلي", p: 2 },
-        { n: "باذنجان مخلل", p: 2 }, { n: "فول عادي - صغير", p: 2 },
-        { n: "فول عادي - كبير", p: 4 }, { n: "فول بالصلصة - صغير", p: 2 },
-        { n: "فول بالصلصة - كبير", p: 4 }, { n: "فول مصلح حمزواي - صغير", p: 5 },
-        { n: "فول مصلح حمزواي - كبير", p: 10 }, { n: "شكشوكة - صغير", p: 2 },
-        { n: "شكشوكة - كبير", p: 4 }, { n: "زهرة - صغير", p: 2 },
-        { n: "زهرة - كبير", p: 4 }, { n: "جبنة - صغير", p: 2 },
-        { n: "جبنة - كبير", p: 4 }, { n: "مسقعة - صغير", p: 2 },
-        { n: "مسقعة - كبير", p: 4 }, { n: "متبل لبناني - صغير", p: 2 },
-        { n: "متبل لبناني - كبير", p: 4 }, { n: "حمص سوري - صغير", p: 2 },
-        { n: "حمص سوري - كبير", p: 4 }, { n: "بطاطس مهروسة - صغير", p: 2 },
-        { n: "بطاطس مهروسة - كبير", p: 4 }
-    ]},
-    { id: 6, cat: "🥪 ركن السندوتشات", items: [
-    { n: "ساندوتش فول", p: 2 }, 
-    { n: "ساندوتش طعمية", p: 2 },
-    { n: "ساندوتش مسقعة", p: 2 }, 
-    { n: "ساندوتش بابا غنوج", p: 2 },
-    { n: "ساندوتش جبنة بالطماطم", p: 2 }, 
-    { n: "ساندوتش شيبسي", p: 2 },
-    { n: "ساندوتش صوابع", p: 2 }, 
-    { n: "ساندوتش بيض مسلوق", p: 3 },
-    { n: "ساندوتش فول بالبيض", p: 3 }, 
-    { n: "ساندوتش بطاطس بانيه", p: 2 },
-    { n: "ساندوتش بطاطس مهروسة", p: 2 }, 
-    { n: "ساندوتش فول على طعمية", p: 3 },
-    { n: "ساندوتش حمزة ماكس", p: 4 }, 
-    { n: "طعمية بالبيض", p: 3 },        // الصنف الجديد 1
-    { n: "حمص سوري", p: 2 },          // الصنف الجديد 2
-    { n: "عجة فرنساوي", p: 2 },        // الصنف الجديد 3
-    { n: "أي ساندوتش بإضافة بيض", p: 3 }
-]},
-    { id: 7, cat: "🥗 السلطات", items: [
-        { n: "حمص", p: 5 }, { n: "طحينة", p: 5 }, { n: "سلطة خضرة", p: 5 }
-    ]},
-    { id: 8, cat: "🥤 المشروبات", items: [
-        { n: "بيبسي", p: 3 }, { n: "ماء", p: 1 }, { n: "كوكاكولا", p: 2 },
-        { n: "كوكاكولا برتقال", p: 2 }, { n: "كوكاكولا ليمون", p: 2 }
-    ]},
-    { id: 9, cat: "🍰 الحلويات", items: [
-        { n: "بلح الشام", p: 5 }, { n: "زلابية", p: 5 }, { n: "صوابع زينب", p: 5 },
-        { n: "رز باللبن", p: 5 }, { n: "مهلبية", p: 5 }
-    ]}
 ];
 
 // 2. حالة التطبيق

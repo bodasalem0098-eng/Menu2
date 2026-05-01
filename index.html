@@ -35,11 +35,23 @@
 
     <style>
     /* تنسيق الحاوية الرئيسية في أسفل الصفحة */
-./* التنسيق الجديد: بسيط وصغير جداً */
+/* التنسيق الجديد: بسيط وصغير جداً */
+/* التنسيق الجديد: بسيط وصغير جداً */
 .footer-container {
     text-align: center;
-    padding: 5px 0; /* تقليل المساحة جداً */
-    background: transparent; /* إزالة الصندوق الداكن */
+    padding: 5px 0;
+    background: transparent;
+}
+
+.designer-tag {
+    text-decoration: none;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    transform: translateX(-5px); /* تم حذف الشرطة الزائدة */
 }
 
 
@@ -259,9 +271,7 @@
     <p class="text-[11px] text-gray-400 leading-relaxed font-semibold">جدة - حي الحرازات - شارع الحرازات العام</p>
 </a>
 
-
-                    
-                    <p style="text-align:center; font-size:12px; color:#666;">جميع الحقوق محفوظة © لمطعم أبو حمزة 2024</p>
+<p style="text-align:center; font-size:12px; color:#666;">جميع الحقوق محفوظة © لمطعم أبو حمزة 2024</p>
 
 <div class="footer-container">
     <a href="https://wa.me/966550340929" target="_blank" class="whatsapp-btn">
@@ -269,24 +279,22 @@
         <span class="full-name">Abdulrahman Shaban</span>
     </a>
 </div>
-                </div>
-            </div>
 
-            <!-- صفحة المنيو -->
-            <div id="menu-screen" class="screen">
-                <div class="sticky-header border-b px-6 py-5 flex justify-between items-center">
-                    <h2 class="text-xl font-black text-hamza-red underline decoration-4 underline-offset-8">منيو أبو حمزة</h2>
-                    <button onclick="navigate('home')" class="bg-gray-50 p-2 rounded-full text-gray-400 active:scale-90 transition-transform">
-                        <i data-lucide="x" class="w-5 h-5"></i>
-                    </button>
-                </div>
-                
-                <div class="sticky top-[73px] z-40 bg-white/95 backdrop-blur-md flex gap-2 overflow-x-auto hide-scrollbar px-6 py-4 border-b" id="cat-tabs">
-                </div>
+</div> </div> <div id="menu-screen" class="screen">
+    <div class="sticky-header border-b px-6 py-5 flex justify-between items-center">
+        <h2 class="text-xl font-black text-hamza-red underline decoration-4 underline-offset-8">منيو أبو حمزة</h2>
+        <button onclick="navigate('home')" class="bg-gray-50 p-2 rounded-full text-gray-400 active:scale-90 transition-transform">
+            <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+    </div>
+    
+    <div class="sticky top-[73px] z-40 bg-white/95 backdrop-blur-md flex gap-2 overflow-x-auto hide-scrollbar px-6 py-4 border-b" id="cat-tabs">
+    </div>
 
-                <div class="p-6 space-y-3" id="items-list">
-                </div>
-            </div>
+    <div class="p-6 space-y-3" id="items-list">
+    </div>
+</div>
+
 
             <!-- صفحة السلة -->
             <div id="cart-screen" class="screen p-6">
@@ -371,13 +379,13 @@ const menuData = [
         id: 1, 
         cat: "🍢 قسم المشويات", 
         items: [
-            { n: "نفر كباب لحم <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: خبز + طحينة + سلطة + شوربة)</span>", p: 25 },
-            { n: "نفر كباب دجاج <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: خبز + طحينة + سلطة + شوربة)</span>", p: 25 },
-            { n: "نفر ريش <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: خبز + طحينة + سلطة + شوربة)</span>", p: 35 },
-            { n: "نفر كباب مشكل <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: خبز + طحينة + سلطة + شوربة)</span>", p: 25 },
-            { n: "نفر أوصال لحم <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: خبز + طحينة + سلطة + شوربة)</span>", p: 30 },
-            { n: "نفر شيش طاووق <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: خبز + طحينة + سلطة + شوربة)</span>", p: 25 },
-            { n: "نفر طرب <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: خبز + طحينة + سلطة + شوربة)</span>", p: 25 },
+            { n: "نفر كباب لحم", d: "(يقدم مع: خبز + طحينة + سلطة + شوربة)", p: 25 },
+            { n: "نفر كباب دجاج", d: "(يقدم مع: خبز + طحينة + سلطة + شوربة)", p: 25 },
+            { n: "نفر ريش", d: "(يقدم مع: خبز + طحينة + سلطة + شوربة)", p: 35 },
+            { n: "نفر كباب مشكل", d: "(يقدم مع: خبز + طحينة + سلطة + شوربة)", p: 25 },
+            { n: "نفر أوصال لحم", d: "(يقدم مع: خبز + طحينة + سلطة + شوربة)", p: 30 },
+            { n: "نفر شيش طاووق", d: "(يقدم مع: خبز + طحينة + سلطة + شوربة)", p: 25 },
+            { n: "نفر طرب", d: "(يقدم مع: خبز + طحينة + سلطة + شوربة)", p: 25 },
             { n: "كيلو مشاوي مشكل", p: 100 },
             { n: "نصف كيلو مشاوي مشكل", p: 50 },
             { n: "رغيف حواوشي", p: 10 },
@@ -395,37 +403,37 @@ const menuData = [
         id: 2, 
         cat: "🐓 قسم الدجاج", 
         items: [
-            { n: "ربع حبة دجاج محمر <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 15 },
-            { n: "ربع حبة دجاج فرن <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 15 },
-            { n: "ربع حبة دجاج شوربة <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 15 }
+            { n: "ربع حبة دجاج محمر", d: "(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)", p: 15 },
+            { n: "ربع حبة دجاج فرن", d: "(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)", p: 15 },
+            { n: "ربع حبة دجاج شوربة", d: "(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)", p: 15 }
         ]
     },
     { 
         id: 3, 
         cat: "🍖 قسم اللحوم", 
         items: [
-            { n: "طلب لحمة محمر <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 20 },
-            { n: "طلب لحمة شوربة <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 20 },
-            { n: "طلب لحمة بالخضار <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 20 }
+            { n: "طلب لحمة محمر", d: "(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)", p: 20 },
+            { n: "طلب لحمة شوربة", d: "(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)", p: 20 },
+            { n: "طلب لحمة بالخضار", d: "(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)", p: 20 }
         ]
     },
     { 
         id: 4, 
         cat: "🍲 قسم الطواجن", 
         items: [
-            { n: "طاجن لحمة بالبصل <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 25 },
-            { n: "طاجن عكاوي بالبصل <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 25 },
-            { n: "طاجن كوارع بالبصل <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 25 }
+            { n: "طاجن لحمة بالبصل", d: "(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)", p: 25 },
+            { n: "طاجن عكاوي بالبصل", d: "(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)", p: 25 },
+            { n: "طاجن كوارع بالبصل", d: "(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)", p: 25 }
         ]
     },
     { 
         id: 5, 
         cat: "🔥 قسم الروقان", 
         items: [
-            { n: "طلب موزة ضاني بالفتة <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 35 },
-            { n: "حبة حمام محشي <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 35 },
-            { n: "ربع حبة بطة محمر <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 25 },
-            { n: "ربع حبة بطة شوربة <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)</span>", p: 25 }
+            { n: "طلب موزة ضاني بالفتة", d: "(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)", p: 35 },
+            { n: "حبة حمام محشي", d: "(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)", p: 35 },
+            { n: "ربع حبة بطة محمر", d: "(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)", p: 25 },
+            { n: "ربع حبة بطة شوربة", d: "(يقدم مع: سلطة + أرز + خضار + شوربة + خبز)", p: 25 }
         ]
     },
     { 
@@ -451,8 +459,8 @@ const menuData = [
         id: 7, 
         cat: "🍳 إضافات المطبخ", 
         items: [
-            { n: "طلب ممبار <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + طحينة + خبز + شوربة)</span>", p: 10 },
-            { n: "طلب كبدة إسكندراني <span class='block text-[10px] text-gray-400 font-normal mt-1'>(يقدم مع: سلطة + طحينة + خبز + شوربة)</span>", p: 10 }
+            { n: "طلب ممبار", d: "(يقدم مع: سلطة + طحينة + خبز + شوربة)", p: 10 },
+            { n: "طلب كبدة إسكندراني", d: "(يقدم مع: سلطة + طحينة + خبز + شوربة)", p: 10 }
         ]
     },
     { 
@@ -473,10 +481,10 @@ const menuData = [
         id: 9, 
         cat: "🍽️ الأطباق المحلية", 
         items: [
-            { n: "طبق مشكل <span class='block text-[10px] text-gray-400 font-normal mt-1'>(بطاطس + طعمية + باذنجان + فول + 8 خبز بالسمسم + مخلل)</span>", p: 10 },
-            { n: "طعمية سوبر مكس حمزواي <span class='block text-[10px] text-gray-400 font-normal mt-1'>(متبل + حمص + 6 طعمية + بطاطس + 3 بيض + سلطة + مخلل + 8 خبز)</span>", p: 16 },
-            { n: "صحن فول مصلح حمزواي <span class='block text-[10px] text-gray-400 font-normal mt-1'>(طعمية + باذنجان + فول بالصلصة + 2 بيض + 6 خبز شامي)</span>", p: 7 },
-            { n: "طبق لمة الأحباب <span class='block text-[10px] text-gray-400 font-normal mt-1'>(طعمية + بيض + باذنجان + بطاطس + فول بالصلصة + فول عادي + شكشوكة + زهرة)</span>", p: 20 },
+            { n: "طبق مشكل", d: "(بطاطس + طعمية + باذنجان + فول + 8 خبز بالسمسم + مخلل)", p: 10 },
+            { n: "طعمية سوبر مكس حمزواي", d: "(متبل + حمص + 6 طعمية + بطاطس + 3 بيض + سلطة + مخلل + 8 خبز)", p: 16 },
+            { n: "صحن فول مصلح حمزواي", d: "(طعمية + باذنجان + فول بالصلصة + 2 بيض + 6 خبز شامي)", p: 7 },
+            { n: "طبق لمة الأحباب", d: "(طعمية + بيض + باذنجان + بطاطس + فول بالصلصة + فول عادي + شكشوكة + زهرة)", p: 20 },
             { n: "أي إضافة (إضافية للطبق)", p: 1 }
         ]
     },
@@ -487,9 +495,9 @@ const menuData = [
             { n: "طعمية (4 حبات)", p: 1 },
             { n: "بطاطس (صوابع / شيبسي / جمبري / بانية)", p: 2 },
             { n: "باذنجان (مقلي / مخلل)", p: 2 },
-            { n: "فول عادي <span class='block text-[10px] text-gray-400 font-normal mt-1'>(صغير: 2 ريال / كبير: 4 ريال)</span>", p: 2 },
-            { n: "فول بالصلصة <span class='block text-[10px] text-gray-400 font-normal mt-1'>(صغير: 2 ريال / كبير: 4 ريال)</span>", p: 2 },
-            { n: "فول مصلح حمزواي <span class='block text-[10px] text-gray-400 font-normal mt-1'>(صغير: 5 ريال / كبير: 10 ريال)</span>", p: 5 },
+            { n: "فول عادي", d: "(صغير: 2 ريال / كبير: 4 ريال)", p: 2 },
+            { n: "فول بالصلصة", d: "(صغير: 2 ريال / كبير: 4 ريال)", p: 2 },
+            { n: "فول مصلح حمزواي", d: "(صغير: 5 ريال / كبير: 10 ريال)", p: 5 },
             { n: "شكشوكة / زهرة / جبنة", p: 2 },
             { n: "مسقعة / متبل / حمص", p: 2 },
             { n: "بطاطس مهروسة", p: 2 }
@@ -505,7 +513,7 @@ const menuData = [
             { n: "ساندوتش شيبسي / صوابع", p: 2 },
             { n: "ساندوتش بيض مسلوق", p: 3 },
             { n: "ساندوتش فول بالبيض", p: 3 },
-            { n: "ساندوتش بطاطس بانيه", p: 2 },
+            { n: "ساندوتش بطاطس بانية", p: 2 },
             { n: "ساندوتش بطاطس مهروسة", p: 2 },
             { n: "ساندوتش فول على طعمية", p: 3 },
             { n: "ساندوتش حمزة ماكس", p: 4 },
@@ -549,51 +557,93 @@ function init() {
 
 function renderTabs() {
     const bar = document.getElementById('cat-tabs');
+    // إضافة whitespace-nowrap تضمن أن الأزرار لن تنكسر لسطر جديد
     bar.innerHTML = menuData.map(c => `
-        <button onclick="changeCat('${c.cat}')" class="flex-none px-6 py-2.5 rounded-2xl text-xs font-black transition-all ${state.activeCat === c.cat ? 'bg-hamza-red text-white shadow-lg scale-105' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}">
+        <button onclick="changeCat('${c.cat}')" 
+                class="flex-none whitespace-nowrap px-6 py-2.5 rounded-2xl text-xs font-black transition-all 
+                ${state.activeCat === c.cat ? 'bg-hamza-red text-white shadow-lg scale-105' : 'bg-gray-100 text-gray-500'}">
             ${c.cat}
         </button>
     `).join('');
 }
 
+
 function renderItems() {
     const list = document.getElementById('items-list');
-    const category = menuData.find(c => c.cat === state.activeCat);
+    // تنظيف اسم القسم من أي فراغات زائدة قد تسبب خللاً في البحث
+    const category = menuData.find(c => c.cat.trim() === state.activeCat.trim());
+    
+    if (!category) {
+        list.innerHTML = '<p class="text-center text-gray-400 py-10">جاري تحميل الأصناف...</p>';
+        return;
+    }
+
     list.innerHTML = category.items.map((i, idx) => `
-        <div class="item-card" style="animation: slideUp 0.3s ease-out ${idx * 0.05}s both">
-            <div class="flex-1 ml-4">
+        <div class="item-card flex items-center justify-between p-4 mb-3 bg-white rounded-2xl shadow-sm border border-gray-50" 
+             style="animation: slideUp 0.3s ease-out ${idx * 0.05}s both">
+            <div class="flex-1 ml-4 text-right">
                 <h4 class="font-black text-sm text-hamza-dark">${i.n}</h4>
                 ${i.d ? `<p class="text-[10px] text-gray-400 font-bold mt-1 leading-relaxed">${i.d}</p>` : ''}
-                <div class="flex items-center gap-1 mt-1.5">
+                <div class="flex items-center gap-1 mt-1.5 justify-start" dir="rtl">
                     <span class="text-hamza-red font-black text-base">${i.p}</span>
                     <span class="text-[10px] text-gray-400 font-bold">ريال</span>
                 </div>
             </div>
-            <button onclick="addToCart('${i.n}', ${i.p}, event)" class="w-11 h-11 bg-hamza-dark text-white rounded-2xl flex items-center justify-center active:scale-90 transition-all hover:bg-black shadow-md border border-gray-100 flex-shrink-0">
+            <button onclick="addToCart('${i.n}', ${i.p}, this)" 
+                    class="w-11 h-11 bg-hamza-dark text-white rounded-2xl flex items-center justify-center active:scale-90 transition-all shadow-md flex-shrink-0">
                 <i data-lucide="plus" class="w-5 h-5"></i>
             </button>
         </div>
     `).join('');
-    lucide.createIcons();
+    
+    // إعادة تشغيل الأيقونات
+    if (window.lucide) {
+        lucide.createIcons();
+    }
 }
 
-function addToCart(n, p, e) {
-    const exists = state.cart.find(x => x.n === n);
-    if(exists) exists.q++; else state.cart.push({n, p, q: 1});
-    saveCart();
+
+
+function addToCart(n, p, btn) {
+    // 1. منطق السلة: البحث عن المنتج أو إضافته
+    const itemIndex = state.cart.findIndex(x => x.n === n);
     
-    const btn = e.currentTarget;
-    const originalIcon = btn.innerHTML;
+    if (itemIndex > -1) {
+        state.cart[itemIndex].q++; // زيادة الكمية إذا كان موجوداً
+    } else {
+        state.cart.push({ n, p, q: 1 }); // إضافة منتج جديد
+    }
+    
+    saveCart(); // حفظ السلة وتحديث الشارة العلويّة
+
+    // 2. التحقق من حالة الزر لمنع تداخل التأثيرات (Animation Guard)
+    if (btn.dataset.animating === "true") return;
+    btn.dataset.animating = "true";
+
+    // 3. التأثير البصري: تغيير الشكل لإعطاء انطباع بالنجاح
+    const originalHTML = btn.innerHTML;
+    
+    // تغيير اللون والأيقونة (استخدام replace لتغيير الفئات بدقة)
+    btn.classList.remove('bg-hamza-dark');
+    btn.classList.add('bg-green-500', 'scale-110'); // إضافة تكبير بسيط
     btn.innerHTML = '<i data-lucide="check" class="w-5 h-5"></i>';
-    btn.classList.replace('bg-hamza-dark', 'bg-green-500');
-    lucide.createIcons();
     
+    // إعادة رندر الأيقونات الجديدة فقط داخل هذا الزر لسرعة الأداء
+    lucide.createIcons();
+
+    // 4. العودة للحالة الأصلية بعد فترة قصيرة
     setTimeout(() => {
-        btn.innerHTML = originalIcon;
-        btn.classList.replace('bg-green-500', 'bg-hamza-dark');
+        btn.innerHTML = originalHTML;
+        btn.classList.remove('bg-green-500', 'scale-110');
+        btn.classList.add('bg-hamza-dark');
+        
+        // إتاحة الزر للنقر والتفاعل مرة أخرى
+        delete btn.dataset.animating;
         lucide.createIcons();
     }, 800);
 }
+
+
 
 function saveCart() {
     localStorage.setItem('hamza_cart', JSON.stringify(state.cart));
@@ -642,6 +692,7 @@ function renderCart() {
                 <button onclick="changeQty('${i.n}', -1)" class="w-9 h-9 flex items-center justify-center text-gray-400 active:scale-90 transition-colors">
                     <i data-lucide="minus" class="w-4 h-4"></i>
                 </button>
+                <span class="text-hamza-red font-black text-base">${i.p * i.q}</span>
                 <span class="font-black text-base w-4 text-center text-hamza-dark">${i.q}</span>
                 <button onclick="changeQty('${i.n}', 1)" class="w-9 h-9 flex items-center justify-center text-gray-400 active:scale-90 transition-colors">
                     <i data-lucide="plus" class="w-4 h-4"></i>
